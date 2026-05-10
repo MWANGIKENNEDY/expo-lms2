@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><title>welcome_screen</title><script src="https://cdn.tailwindcss.com"></script><script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script><style>    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');        :root {      --aurora-1: #4F46E5;      --aurora-2: #7C3AED;      --aurora-3: #EC4899;      --glass-bg: rgba(255, 255, 255, 0.1);      --glass-border: rgba(255, 255, 255, 0.2);    }    body {      font-family: 'Inter', sans-serif;      margin: 0;      padding: 0;      background-color: #f3f4f6;    }    .iphone-frame {      width: 393px;      height: 852px;      background-color: #ffffff;      position: relative;      border-radius: 0px;      box-shadow: 0 0 20px rgba(0,0,0,0.1);      overflow: hidden;      margin: 2rem auto;    }    .aurora-bg {      position: absolute;      inset: 0;      background: linear-gradient(135deg, var(--aurora-1), var(--aurora-2), var(--aurora-3));      filter: blur(80px);      transform: scale(1.2);      z-index: 0;    }    .glass-panel {      background: var(--glass-bg);      backdrop-filter: blur(12px);      -webkit-backdrop-filter: blur(12px);      border: 1px solid var(--glass-border);    }    .custom-shadow {      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);    }  </style></head><body><div class="iphone-frame"><!-- #aurora-background_001 --><div class="aurora-bg"></div><!-- /#aurora-background_001 --><div class="relative z-10 h-full flex flex-col"><!-- #main-content-scroll_002 --><div class="flex-1 overflow-y-auto px-6 pt-20"><!-- #hero-visual_003 --><div class="relative mb-12 flex justify-center"><div class="w-64 h-64 glass-panel rounded-full flex items-center justify-center p-8 custom-shadow"><!-- Generation-Info: {"aspectRatio": "1:1", "background": "transparent"} --><img alt="Luminous glass aesthetic, a futuristic crystal book glowing with soft purple and teal light on a clean background" class="w-full h-full object-cover rounded-full opacity-90" src="https://media.screensdesign.com/afprjsia/edeb2ed2-0d46-4967-bc02-604a9c00e09d.png" data-navigates-to="social_proof_screen.html" style="; cursor: pointer;"></div><div class="absolute -top-4 -right-4 w-20 h-20 glass-panel rounded-full flex items-center justify-center animate-bounce duration-[3000ms]"><iconify-icon class="text-white text-3xl" icon="lucide:sparkles"></iconify-icon></div></div><!-- /#hero-visual_003 --><!-- #text-content_004 --><div class="text-center space-y-4"><h1 class="text-white text-4xl font-bold tracking-tight leading-tight">            Master Your Future <br><span class="text-pink-200">With ULearner</span></h1><p class="text-blue-50 text-lg font-light leading-relaxed">            Access world-class education with an immersive learning experience designed for the modern era.          </p></div><!-- /#text-content_004 --><!-- #educational-fact_005 --><div class="mt-12 glass-panel rounded-2xl p-4 flex items-start gap-4"><div class="bg-white/20 p-2 rounded-xl"><iconify-icon class="text-white text-2xl" icon="lucide:lightbulb"></iconify-icon></div><div><p class="text-white font-medium text-sm mb-1">Did you know?</p><p class="text-blue-100 text-xs leading-relaxed opacity-80">              Micro-learning increases knowledge retention by up to 80% compared to traditional methods.            </p></div></div><!-- /#educational-fact_005 --></div><!-- /#main-content-scroll_002 --><!-- #footer-actions_006 --><div class="relative z-20 p-6 pb-12 space-y-4"><!-- #primary-button_007 --><button class="w-full h-[60px] bg-white text-indigo-700 font-bold rounded-2xl shadow-xl active:scale-95 transition-transform flex items-center justify-center gap-2" data-navigates-to="social_proof_screen.html" style="; cursor: pointer;">          Start Learning        </button><!-- /#primary-button_007 --><!-- #secondary-button_008 --><button class="w-full h-[40px] text-white/80 text-sm font-medium active:opacity-60 transition-opacity" data-navigates-to="learning_dashboard.html" style="; cursor: pointer;">          Already have an account? Sign In        </button><!-- /#secondary-button_008 --></div><!-- /#footer-actions_006 --></div></div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Collect all navigable elements with their targets
+        const hotspots = [];
+        document.querySelectorAll('[data-navigates-to]').forEach(el => {
+          hotspots.push({
+            element: el,
+            target: el.getAttribute('data-navigates-to'),
+            isScreenTap: el.getAttribute('data-screen-tap') === 'true'
+          });
+        });
+
+        // Document-level capture phase click handler
+        // Checks click position against element bounds - works regardless of z-index stacking
+        document.addEventListener('click', (e) => {
+          const clickX = e.clientX;
+          const clickY = e.clientY;
+
+          // First check screen-tap (tap anywhere) connections
+          const screenTapHotspot = hotspots.find(h => h.isScreenTap);
+          if (screenTapHotspot && screenTapHotspot.target) {
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.href = screenTapHotspot.target;
+            return;
+          }
+
+          // Check each hotspot element's bounds
+          for (const hotspot of hotspots) {
+            if (hotspot.isScreenTap) continue; // Already handled above
+            try {
+              const rect = hotspot.element.getBoundingClientRect();
+              if (clickX >= rect.left && clickX <= rect.right &&
+                  clickY >= rect.top && clickY <= rect.bottom) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (hotspot.target) window.location.href = hotspot.target;
+                return;
+              }
+            } catch (err) {
+              // Element might have issues, skip it
+            }
+          }
+
+          // Prevent default for non-connected interactive elements
+          const clickedInteractive = e.target.closest('a, button, [onclick]');
+          if (clickedInteractive) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        }, true); // capture phase
+
+        // Prevent form submissions
+        document.addEventListener('submit', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }, true);
+      });
+    </script></body></html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><title>course_discovery_screen</title><script src="https://cdn.tailwindcss.com"></script><script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script><style>    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');    :root {      --aurora-1: #312E81;      --aurora-2: #4C1D95;      --aurora-3: #1E40AF;      --glass-bg: rgba(255, 255, 255, 0.08);      --glass-border: rgba(255, 255, 255, 0.12);    }    body {      font-family: 'Inter', sans-serif;      margin: 0;      padding: 0;      background-color: #f3f4f6;    }    .iphone-frame {      width: 393px;      height: 852px;      background-color: #0F172A;      position: relative;      border-radius: 0px;      box-shadow: 0 0 20px rgba(0,0,0,0.1);      overflow: hidden;      margin: 2rem auto;    }    .aurora-bg {      position: absolute;      inset: 0;      background: radial-gradient(circle at 0% 0%, var(--aurora-1) 0%, transparent 50%),                  radial-gradient(circle at 100% 100%, var(--aurora-2) 0%, transparent 50%),                  radial-gradient(circle at 50% 50%, var(--aurora-3) 0%, transparent 70%);      filter: blur(120px);      opacity: 0.8;      z-index: 0;    }    .glass-panel {      background: var(--glass-bg);      backdrop-filter: blur(20px);      -webkit-backdrop-filter: blur(20px);      border: 1px solid var(--glass-border);    }    .hide-scrollbar::-webkit-scrollbar {      display: none;    }    .hide-scrollbar {      -ms-overflow-style: none;      scrollbar-width: none;    }    .category-tile {      min-width: 110px;      transition: transform 0.2s;    }  </style></head><body><div class="iphone-frame"><!-- #aurora-background_001 --><div class="aurora-bg"></div><!-- /#aurora-background_001 --><div class="relative z-10 h-full flex flex-col"><!-- #header-search_002 --><div class="px-6 pt-16 pb-4"><h2 class="text-white text-2xl font-bold mb-4 tracking-tight">Discover Courses</h2><div class="glass-panel rounded-2xl flex items-center px-4 h-12"><iconify-icon class="text-white/40 text-xl mr-3" icon="lucide:search"></iconify-icon><input class="bg-transparent border-none text-white text-sm w-full focus:outline-none placeholder:text-white/30" placeholder="Search subjects, authors..." type="text"></div></div><!-- /#header-search_002 --><!-- #scroll-container_003 --><div class="flex-1 overflow-y-auto hide-scrollbar pb-24"><!-- #categories-section_004 --><div class="mb-8"><div class="px-6 flex justify-between items-center mb-4"><h3 class="text-white/90 font-semibold">Categories</h3></div><div class="flex overflow-x-auto gap-3 px-6 hide-scrollbar"><!-- #cat-programming_005 --><div class="category-tile glass-panel rounded-2xl p-4 flex flex-col items-center gap-2 active:scale-95" data-navigates-to="learning_dashboard.html" style="; cursor: pointer;"><div class="w-10 h-10 bg-indigo-500/20 rounded-xl flex items-center justify-center"><iconify-icon class="text-indigo-400 text-xl" icon="lucide:code"></iconify-icon></div><span class="text-white text-xs font-medium">Programming</span></div><!-- /#cat-programming_005 --><!-- #cat-design_006 --><div class="category-tile glass-panel rounded-2xl p-4 flex flex-col items-center gap-2 active:scale-95" data-navigates-to="learning_dashboard.html" style="; cursor: pointer;"><div class="w-10 h-10 bg-pink-500/20 rounded-xl flex items-center justify-center"><iconify-icon class="text-pink-400 text-xl" icon="lucide:palette"></iconify-icon></div><span class="text-white text-xs font-medium">Design</span></div><!-- /#cat-design_006 --><!-- #cat-marketing_007 --><div class="category-tile glass-panel rounded-2xl p-4 flex flex-col items-center gap-2 active:scale-95"><div class="w-10 h-10 bg-emerald-500/20 rounded-xl flex items-center justify-center"><iconify-icon class="text-emerald-400 text-xl" icon="lucide:megaphone"></iconify-icon></div><span class="text-white text-xs font-medium">Marketing</span></div><!-- /#cat-marketing_007 --><!-- #cat-music_008 --><div class="category-tile glass-panel rounded-2xl p-4 flex flex-col items-center gap-2 active:scale-95"><div class="w-10 h-10 bg-amber-500/20 rounded-xl flex items-center justify-center"><iconify-icon class="text-amber-400 text-xl" icon="lucide:music"></iconify-icon></div><span class="text-white text-xs font-medium">Music</span></div><!-- /#cat-music_008 --></div></div><!-- /#categories-section_004 --><!-- #recommended-section_009 --><div class="px-6"><div class="flex flex-col mb-4"><h3 class="text-white/90 font-semibold">Recommended for You</h3><p class="text-white/40 text-[10px] uppercase tracking-wider mt-1">Based on your recent quiz performance</p></div><div class="space-y-4"><!-- #recommend-card-1_010 --><div class="glass-panel rounded-3xl overflow-hidden active:scale-[0.98] transition-transform" data-navigates-to="learning_dashboard.html" style="; cursor: pointer;"><div class="relative h-44"><!-- Generation-Info: {"aspectRatio": "16:9", "background": "solid"} --><img alt="Luminous glass aesthetic, premium online course discovery with vibrant glowing accents showing a futuristic UI dashboard with glass elements and data charts" class="w-full h-full object-cover opacity-90" src="https://media.screensdesign.com/gasset/c24d9878-cb78-4560-88d5-cf104e96685f.png"><div class="absolute top-3 left-3"><span class="bg-indigo-600/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-white">MOST RELEVANT</span></div></div><div class="p-5"><div class="flex justify-between items-start mb-2"><h4 class="text-white font-bold text-lg leading-snug">Advanced Prototyping in Figma</h4><div class="flex items-center gap-1 bg-white/10 px-2 py-0.5 rounded-lg"><iconify-icon class="text-amber-400 text-xs" icon="lucide:star"></iconify-icon><span class="text-white text-[10px] font-bold">4.9</span></div></div><div class="flex items-center gap-4"><div class="flex items-center gap-1.5"><iconify-icon class="text-white/40 text-sm" icon="lucide:clock"></iconify-icon><span class="text-white/60 text-xs">12h 30m</span></div><div class="flex items-center gap-1.5"><iconify-icon class="text-white/40 text-sm" icon="lucide:bar-chart"></iconify-icon><span class="text-white/60 text-xs">Expert</span></div></div></div></div><!-- /#recommend-card-1_010 --><!-- #recommend-card-2_011 --><div class="glass-panel rounded-3xl overflow-hidden active:scale-[0.98] transition-transform" data-navigates-to="learning_dashboard.html" style="; cursor: pointer;"><div class="relative h-44"><!-- Generation-Info: {"aspectRatio": "16:9", "background": "solid"} --><img alt="Luminous glass aesthetic, premium online course discovery with vibrant glowing accents showing 3D digital art concepts with soft neon lights" class="w-full h-full object-cover opacity-90" src="https://media.screensdesign.com/gasset/b6d8bb94-7d96-4157-a9c9-79d69aa51987.png"></div><div class="p-5"><div class="flex justify-between items-start mb-2"><h4 class="text-white font-bold text-lg leading-snug">Generative Art with Three.js</h4><div class="flex items-center gap-1 bg-white/10 px-2 py-0.5 rounded-lg"><iconify-icon class="text-amber-400 text-xs" icon="lucide:star"></iconify-icon><span class="text-white text-[10px] font-bold">4.7</span></div></div><div class="flex items-center gap-4"><div class="flex items-center gap-1.5"><iconify-icon class="text-white/40 text-sm" icon="lucide:clock"></iconify-icon><span class="text-white/60 text-xs">8h 45m</span></div><div class="flex items-center gap-1.5"><iconify-icon class="text-white/40 text-sm" icon="lucide:bar-chart"></iconify-icon><span class="text-white/60 text-xs">Intermediate</span></div></div></div></div><!-- /#recommend-card-2_011 --></div></div><!-- /#recommended-section_009 --></div><!-- /#scroll-container_003 --><!-- #tab-bar_012 --><div class="absolute bottom-0 left-0 right-0 glass-panel border-t-0 border-x-0 rounded-t-[32px] px-8 py-6 flex items-center justify-between"><button class="flex flex-col items-center gap-1 text-white/40 active:text-white" data-navigates-to="learning_dashboard.html" style="; cursor: pointer;"><iconify-icon class="text-2xl" icon="lucide:home"></iconify-icon><span class="text-[10px] font-bold">Home</span></button><button class="flex flex-col items-center gap-1 text-indigo-400"><iconify-icon class="text-2xl" icon="lucide:book-open"></iconify-icon><span class="text-[10px] font-bold">Courses</span></button><button class="flex flex-col items-center gap-1 text-white/40 active:text-white" data-navigates-to="search_results_screen.html" style="; cursor: pointer;"><iconify-icon class="text-2xl" icon="lucide:search"></iconify-icon><span class="text-[10px] font-bold">Search</span></button><button class="flex flex-col items-center gap-1 text-white/40 active:text-white"><iconify-icon class="text-2xl" icon="lucide:user"></iconify-icon><span class="text-[10px] font-bold">Profile</span></button></div><!-- /#tab-bar_012 --></div></div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Collect all navigable elements with their targets
+        const hotspots = [];
+        document.querySelectorAll('[data-navigates-to]').forEach(el => {
+          hotspots.push({
+            element: el,
+            target: el.getAttribute('data-navigates-to'),
+            isScreenTap: el.getAttribute('data-screen-tap') === 'true'
+          });
+        });
+
+        // Document-level capture phase click handler
+        // Checks click position against element bounds - works regardless of z-index stacking
+        document.addEventListener('click', (e) => {
+          const clickX = e.clientX;
+          const clickY = e.clientY;
+
+          // First check screen-tap (tap anywhere) connections
+          const screenTapHotspot = hotspots.find(h => h.isScreenTap);
+          if (screenTapHotspot && screenTapHotspot.target) {
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.href = screenTapHotspot.target;
+            return;
+          }
+
+          // Check each hotspot element's bounds
+          for (const hotspot of hotspots) {
+            if (hotspot.isScreenTap) continue; // Already handled above
+            try {
+              const rect = hotspot.element.getBoundingClientRect();
+              if (clickX >= rect.left && clickX <= rect.right &&
+                  clickY >= rect.top && clickY <= rect.bottom) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (hotspot.target) window.location.href = hotspot.target;
+                return;
+              }
+            } catch (err) {
+              // Element might have issues, skip it
+            }
+          }
+
+          // Prevent default for non-connected interactive elements
+          const clickedInteractive = e.target.closest('a, button, [onclick]');
+          if (clickedInteractive) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        }, true); // capture phase
+
+        // Prevent form submissions
+        document.addEventListener('submit', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }, true);
+      });
+    </script></body></html>

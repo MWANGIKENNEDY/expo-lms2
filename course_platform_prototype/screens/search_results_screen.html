@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><title>search_results_screen</title><script src="https://cdn.tailwindcss.com"></script><script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script><style>    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');    :root {      --aurora-1: #312E81;      --aurora-2: #4C1D95;      --aurora-3: #1E40AF;      --glass-bg: rgba(255, 255, 255, 0.08);      --glass-border: rgba(255, 255, 255, 0.15);    }    body {      font-family: 'Inter', sans-serif;      margin: 0;      padding: 0;      background-color: #f3f4f6;    }    .iphone-frame {      width: 393px;      height: 852px;      background-color: #0F172A;      position: relative;      border-radius: 0px;      box-shadow: 0 0 20px rgba(0,0,0,0.1);      overflow: hidden;      margin: 2rem auto;      display: flex;      flex-direction: column;    }    .aurora-bg {      position: absolute;      inset: 0;      background: radial-gradient(circle at 100% 0%, var(--aurora-1) 0%, transparent 50%),                  radial-gradient(circle at 0% 100%, var(--aurora-2) 0%, transparent 50%),                  radial-gradient(circle at 50% 50%, var(--aurora-3) 0%, transparent 70%);      filter: blur(120px);      opacity: 0.8;      z-index: 0;    }    .glass-panel {      background: var(--glass-bg);      backdrop-filter: blur(20px);      -webkit-backdrop-filter: blur(20px);      border: 1px solid var(--glass-border);    }    .filter-chip {      background: rgba(255, 255, 255, 0.05);      border: 1px solid rgba(255, 255, 255, 0.1);      transition: all 0.2s ease;    }    .filter-chip.active {      background: rgba(255, 255, 255, 0.2);      border-color: white;      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);    }    .skeleton-pulse {      animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;      background: rgba(255, 255, 255, 0.05);    }    @keyframes pulse {      0%, 100% { opacity: 1; }      50% { opacity: 0.4; }    }    .hide-scrollbar::-webkit-scrollbar { display: none; }    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }  </style></head><body><div class="iphone-frame"><!-- #aurora-background_001 --><div class="aurora-bg"></div><!-- /#aurora-background_001 --><!-- #search-header_002 --><div class="relative z-10 px-6 pt-16 pb-4"><div class="flex items-center gap-4 mb-6"><button class="w-10 h-10 glass-panel rounded-full flex items-center justify-center text-white active:scale-90 transition-transform"><iconify-icon class="text-xl" icon="lucide:chevron-left"></iconify-icon></button><div class="flex-1 glass-panel rounded-2xl flex items-center px-4 h-12"><iconify-icon class="text-white/40 text-xl mr-3" icon="lucide:search"></iconify-icon><input class="bg-transparent border-none text-white text-sm w-full focus:outline-none" type="text" value="UI Design Master"><iconify-icon class="text-white/40 text-lg" icon="lucide:x"></iconify-icon></div></div><!-- #smart-filters_003 --><div class="flex overflow-x-auto gap-3 hide-scrollbar -mx-2 px-2"><button class="filter-chip active px-4 py-2 rounded-xl flex items-center gap-2 whitespace-nowrap text-xs font-bold text-white"><iconify-icon icon="lucide:bar-chart-2"></iconify-icon>          Difficulty        </button><button class="filter-chip px-4 py-2 rounded-xl flex items-center gap-2 whitespace-nowrap text-xs font-bold text-white/60"><iconify-icon icon="lucide:tag"></iconify-icon>          Price        </button><button class="filter-chip px-4 py-2 rounded-xl flex items-center gap-2 whitespace-nowrap text-xs font-bold text-white/60"><iconify-icon icon="lucide:clock"></iconify-icon>          Duration        </button><button class="filter-chip px-4 py-2 rounded-xl flex items-center gap-2 whitespace-nowrap text-xs font-bold text-white/60"><iconify-icon icon="lucide:star"></iconify-icon>          Ratings        </button></div><!-- /#smart-filters_003 --></div><!-- /#search-header_002 --><!-- #main-content_004 --><main class="relative z-10 flex-1 overflow-y-auto hide-scrollbar px-6"><div class="flex items-center justify-between mb-6"><p class="text-white/40 text-xs font-medium uppercase tracking-widest">24 Results Found</p><button class="text-indigo-400 text-xs font-bold flex items-center gap-1">          Sort by Relevant          <iconify-icon icon="lucide:chevron-down"></iconify-icon></button></div><div class="space-y-6 pb-24"><!-- #vibrant-card-1_005 --><div class="glass-panel rounded-[32px] overflow-hidden active:scale-[0.98] transition-all" data-navigates-to="course_details_screen.html" style="; cursor: pointer;"><div class="h-48 relative"><!-- Generation-Info: {"aspectRatio": "16:9", "background": "solid"} --><img alt="Luminous glass aesthetic, vibrant course card with glowing teal and purple accents showing advanced UI design components" class="w-full h-full object-cover" src="https://media.screensdesign.com/gasset/21d1552c-14f9-47b5-958f-573c5cb224fd.png"><div class="absolute top-4 left-4 flex gap-2"><span class="bg-indigo-600/80 backdrop-blur-md text-[10px] font-bold text-white px-2 py-1 rounded-lg uppercase tracking-wider">Bestseller</span></div><button class="absolute top-4 right-4 w-8 h-8 glass-panel rounded-full flex items-center justify-center text-white"><iconify-icon icon="lucide:heart"></iconify-icon></button></div><div class="p-5"><div class="flex justify-between items-start mb-3"><h3 class="text-white font-bold text-lg leading-tight">Advanced Glassmorphism <br>for Web &amp; Mobile</h3><div class="flex items-center gap-1 bg-white/10 px-2 py-1 rounded-lg"><iconify-icon class="text-amber-400 text-xs" icon="lucide:star"></iconify-icon><span class="text-white text-xs font-bold">4.9</span></div></div><div class="flex items-center gap-4"><div class="flex items-center gap-1.5"><iconify-icon class="text-white/30 text-sm" icon="lucide:users"></iconify-icon><span class="text-white/50 text-xs">2.4k Students</span></div><div class="flex items-center gap-1.5"><iconify-icon class="text-white/30 text-sm" icon="lucide:bar-chart"></iconify-icon><span class="text-white/50 text-xs">Expert</span></div></div><div class="mt-4 flex items-center justify-between"><p class="text-white text-xl font-bold">$49.99</p><div class="flex items-center gap-2"><div class="w-6 h-6 rounded-full overflow-hidden border border-white/20"><!-- Generation-Info: {"aspectRatio": "1:1", "background": "solid"} --><img alt="Luminous glass aesthetic, portrait of an expert tech mentor with a friendly expression" class="w-full h-full object-cover" src="https://media.screensdesign.com/gasset/dd5c4110-e394-4181-a9ce-509275b8a0e5.png"></div><span class="text-white/60 text-[10px]">Julian C.</span></div></div></div></div><!-- /#vibrant-card-1_005 --><!-- #skeleton-loader-item_006 --><div class="glass-panel rounded-[32px] overflow-hidden"><div class="h-48 skeleton-pulse"></div><div class="p-5 space-y-3"><div class="h-6 w-3/4 skeleton-pulse rounded-lg"></div><div class="flex gap-4"><div class="h-4 w-20 skeleton-pulse rounded-lg"></div><div class="h-4 w-20 skeleton-pulse rounded-lg"></div></div><div class="flex justify-between items-center pt-2"><div class="h-6 w-16 skeleton-pulse rounded-lg"></div><div class="h-6 w-24 skeleton-pulse rounded-lg"></div></div></div></div><!-- /#skeleton-loader-item_006 --><!-- #skeleton-loader-item_007 --><div class="glass-panel rounded-[32px] overflow-hidden opacity-50"><div class="h-48 skeleton-pulse"></div><div class="p-5 space-y-3"><div class="h-6 w-2/3 skeleton-pulse rounded-lg"></div><div class="h-4 w-32 skeleton-pulse rounded-lg"></div></div></div><!-- /#skeleton-loader-item_007 --></div></main><!-- /#main-content_004 --><!-- #tab-bar_008 --><nav class="relative z-20 glass-panel border-t-0 border-x-0 rounded-t-[32px] px-8 py-6 flex items-center justify-between"><button class="flex flex-col items-center gap-1 text-white/40" data-navigates-to="learning_dashboard.html" style="; cursor: pointer;"><iconify-icon class="text-2xl" icon="lucide:home"></iconify-icon><span class="text-[10px] font-bold">Home</span></button><button class="flex flex-col items-center gap-1 text-white/40" data-navigates-to="course_discovery_screen.html" style="; cursor: pointer;"><iconify-icon class="text-2xl" icon="lucide:book-open"></iconify-icon><span class="text-[10px] font-bold">Courses</span></button><button class="flex flex-col items-center gap-1 text-indigo-400"><iconify-icon class="text-2xl" icon="lucide:search"></iconify-icon><span class="text-[10px] font-bold">Search</span></button><button class="flex flex-col items-center gap-1 text-white/40"><iconify-icon class="text-2xl" icon="lucide:user"></iconify-icon><span class="text-[10px] font-bold">Profile</span></button></nav><!-- /#tab-bar_008 --></div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Collect all navigable elements with their targets
+        const hotspots = [];
+        document.querySelectorAll('[data-navigates-to]').forEach(el => {
+          hotspots.push({
+            element: el,
+            target: el.getAttribute('data-navigates-to'),
+            isScreenTap: el.getAttribute('data-screen-tap') === 'true'
+          });
+        });
+
+        // Document-level capture phase click handler
+        // Checks click position against element bounds - works regardless of z-index stacking
+        document.addEventListener('click', (e) => {
+          const clickX = e.clientX;
+          const clickY = e.clientY;
+
+          // First check screen-tap (tap anywhere) connections
+          const screenTapHotspot = hotspots.find(h => h.isScreenTap);
+          if (screenTapHotspot && screenTapHotspot.target) {
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.href = screenTapHotspot.target;
+            return;
+          }
+
+          // Check each hotspot element's bounds
+          for (const hotspot of hotspots) {
+            if (hotspot.isScreenTap) continue; // Already handled above
+            try {
+              const rect = hotspot.element.getBoundingClientRect();
+              if (clickX >= rect.left && clickX <= rect.right &&
+                  clickY >= rect.top && clickY <= rect.bottom) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (hotspot.target) window.location.href = hotspot.target;
+                return;
+              }
+            } catch (err) {
+              // Element might have issues, skip it
+            }
+          }
+
+          // Prevent default for non-connected interactive elements
+          const clickedInteractive = e.target.closest('a, button, [onclick]');
+          if (clickedInteractive) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        }, true); // capture phase
+
+        // Prevent form submissions
+        document.addEventListener('submit', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }, true);
+      });
+    </script></body></html>

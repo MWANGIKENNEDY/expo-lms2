@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><title>path_selection_screen</title><script src="https://cdn.tailwindcss.com"></script><script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script><style>    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');        :root {      --aurora-1: #064E3B;      --aurora-2: #0F172A;      --aurora-3: #1E3A8A;      --glass-bg: rgba(255, 255, 255, 0.05);      --glass-border: rgba(255, 255, 255, 0.1);    }    body {      font-family: 'Inter', sans-serif;      margin: 0;      padding: 0;      background-color: #f3f4f6;    }    .iphone-frame {      width: 393px;      height: 852px;      background-color: #0F172A;      position: relative;      border-radius: 0px;      box-shadow: 0 0 20px rgba(0,0,0,0.1);      overflow: hidden;      margin: 2rem auto;    }    .aurora-bg {      position: absolute;      inset: 0;      background: linear-gradient(210deg, var(--aurora-1), var(--aurora-2), var(--aurora-3));      filter: blur(100px);      transform: scale(1.3);      z-index: 0;    }    .glass-option {      background: var(--glass-bg);      backdrop-filter: blur(10px);      -webkit-backdrop-filter: blur(10px);      border: 1px solid var(--glass-border);      transition: all 0.2s ease;    }    .glass-option.active {      background: rgba(255, 255, 255, 0.15);      border-color: rgba(255, 255, 255, 0.4);      transform: scale(1.02);    }  </style></head><body><div class="iphone-frame"><!-- #aurora-background_201 --><div class="aurora-bg"></div><!-- /#aurora-background_201 --><div class="relative z-10 h-full flex flex-col"><!-- #main-content_202 --><div class="flex-1 overflow-y-auto px-6 pt-16"><!-- #header_203 --><div class="mb-8"><h2 class="text-white text-3xl font-bold tracking-tight mb-2">What interests you?</h2><p class="text-blue-100/60">Choose your path to get a custom learning plan.</p></div><!-- /#header_203 --><!-- #path-grid_204 --><div class="grid grid-cols-2 gap-4"><!-- #path-item-1_205 --><div class="glass-option active rounded-3xl p-6 text-center flex flex-col items-center gap-3" data-navigates-to="path_confirmation_screen.html" style="; cursor: pointer;"><iconify-icon class="text-emerald-400 text-4xl" icon="lucide:code"></iconify-icon><span class="text-white font-medium">Programming</span></div><!-- /#path-item-1_205 --><!-- #path-item-2_206 --><div class="glass-option rounded-3xl p-6 text-center flex flex-col items-center gap-3" data-navigates-to="path_confirmation_screen.html" style="; cursor: pointer;"><iconify-icon class="text-blue-400 text-4xl" icon="lucide:palette"></iconify-icon><span class="text-white font-medium">Design</span></div><!-- /#path-item-2_206 --><!-- #path-item-3_207 --><div class="glass-option rounded-3xl p-6 text-center flex flex-col items-center gap-3" data-navigates-to="path_confirmation_screen.html" style="; cursor: pointer;"><iconify-icon class="text-purple-400 text-4xl" icon="lucide:trending-up"></iconify-icon><span class="text-white font-medium">Business</span></div><!-- /#path-item-3_207 --><!-- #path-item-4_208 --><div class="glass-option rounded-3xl p-6 text-center flex flex-col items-center gap-3" data-navigates-to="path_confirmation_screen.html" style="; cursor: pointer;"><iconify-icon class="text-pink-400 text-4xl" icon="lucide:camera"></iconify-icon><span class="text-white font-medium">Photography</span></div><!-- /#path-item-4_208 --><!-- #path-item-5_209 --><div class="glass-option rounded-3xl p-6 text-center flex flex-col items-center gap-3" data-navigates-to="path_confirmation_screen.html" style="; cursor: pointer;"><iconify-icon class="text-yellow-400 text-4xl" icon="lucide:music"></iconify-icon><span class="text-white font-medium">Music</span></div><!-- /#path-item-5_209 --><!-- #path-item-6_210 --><div class="glass-option rounded-3xl p-6 text-center flex flex-col items-center gap-3" data-navigates-to="path_confirmation_screen.html" style="; cursor: pointer;"><iconify-icon class="text-orange-400 text-4xl" icon="lucide:languages"></iconify-icon><span class="text-white font-medium">Languages</span></div><!-- /#path-item-6_210 --></div><!-- /#path-grid_204 --></div><!-- /#main-content_202 --><!-- #footer_211 --><div class="relative z-20 p-6 pb-12"><button class="w-full h-[60px] bg-emerald-500 text-white font-bold rounded-2xl shadow-lg active:scale-95 transition-transform" data-navigates-to="path_confirmation_screen.html" style="; cursor: pointer;">Personalize My Path</button></div><!-- /#footer_211 --></div></div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Collect all navigable elements with their targets
+        const hotspots = [];
+        document.querySelectorAll('[data-navigates-to]').forEach(el => {
+          hotspots.push({
+            element: el,
+            target: el.getAttribute('data-navigates-to'),
+            isScreenTap: el.getAttribute('data-screen-tap') === 'true'
+          });
+        });
+
+        // Document-level capture phase click handler
+        // Checks click position against element bounds - works regardless of z-index stacking
+        document.addEventListener('click', (e) => {
+          const clickX = e.clientX;
+          const clickY = e.clientY;
+
+          // First check screen-tap (tap anywhere) connections
+          const screenTapHotspot = hotspots.find(h => h.isScreenTap);
+          if (screenTapHotspot && screenTapHotspot.target) {
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.href = screenTapHotspot.target;
+            return;
+          }
+
+          // Check each hotspot element's bounds
+          for (const hotspot of hotspots) {
+            if (hotspot.isScreenTap) continue; // Already handled above
+            try {
+              const rect = hotspot.element.getBoundingClientRect();
+              if (clickX >= rect.left && clickX <= rect.right &&
+                  clickY >= rect.top && clickY <= rect.bottom) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (hotspot.target) window.location.href = hotspot.target;
+                return;
+              }
+            } catch (err) {
+              // Element might have issues, skip it
+            }
+          }
+
+          // Prevent default for non-connected interactive elements
+          const clickedInteractive = e.target.closest('a, button, [onclick]');
+          if (clickedInteractive) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        }, true); // capture phase
+
+        // Prevent form submissions
+        document.addEventListener('submit', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }, true);
+      });
+    </script></body></html>

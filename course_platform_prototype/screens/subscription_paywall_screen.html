@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><title>subscription_paywall_screen</title><script src="https://cdn.tailwindcss.com"></script><script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script><style>    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');        :root {      --aurora-1: #7C3AED;      --aurora-2: #EC4899;      --glass-bg: rgba(255, 255, 255, 0.1);      --glass-border: rgba(255, 255, 255, 0.2);    }    body {      font-family: 'Inter', sans-serif;      margin: 0;      padding: 0;      background-color: #f3f4f6;    }    .iphone-frame {      width: 393px;      height: 852px;      background-color: #ffffff;      position: relative;      border-radius: 0px;      box-shadow: 0 0 20px rgba(0,0,0,0.1);      overflow: hidden;      margin: 2rem auto;    }    .aurora-bg {      position: absolute;      inset: 0;      background: linear-gradient(180deg, var(--aurora-1), var(--aurora-2));      filter: blur(100px);      z-index: 0;    }    .glass-card {      background: var(--glass-bg);      backdrop-filter: blur(25px);      -webkit-backdrop-filter: blur(25px);      border: 1px solid var(--glass-border);    }    .radio-active {      background: rgba(255, 255, 255, 0.2);      border-color: white;    }  </style></head><body><div class="iphone-frame"><!-- #aurora-background_401 --><div class="aurora-bg"></div><!-- /#aurora-background_401 --><div class="relative z-10 h-full flex flex-col"><!-- #header_402 --><div class="px-6 pt-16 flex justify-between items-start" data-navigates-to="learning_dashboard.html" style="; cursor: pointer;"><button class="w-10 h-10 glass-card rounded-full flex items-center justify-center text-white/50" data-navigates-to="path_confirmation_screen.html" style="; cursor: pointer;"><iconify-icon icon="lucide:x"></iconify-icon></button><div class="text-right"><span class="bg-white/20 px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-wider">Limited Time</span><p class="text-white/80 text-xs mt-1">Offer ends in 2:45</p></div></div><div class="px-6 pt-8 pb-4 text-center"><h2 class="text-white text-3xl font-bold mb-2">Start Your Mastery</h2><p class="text-blue-100/70 text-sm">Invest in yourself today for a brighter tomorrow.</p></div><!-- /#header_402 --><!-- #main-content-scroll_403 --><div class="flex-1 overflow-y-auto px-6 space-y-4"><!-- #benefit-list_404 --><div class="glass-card rounded-3xl p-6 space-y-3"><div class="flex items-center gap-3"><iconify-icon class="text-emerald-400" icon="lucide:check-circle"></iconify-icon><span class="text-white text-sm">Unlimited access to 500+ courses</span></div><div class="flex items-center gap-3"><iconify-icon class="text-emerald-400" icon="lucide:check-circle"></iconify-icon><span class="text-white text-sm">Exclusive workshop downloads</span></div><div class="flex items-center gap-3"><iconify-icon class="text-emerald-400" icon="lucide:check-circle"></iconify-icon><span class="text-white text-sm">Personalized AI tutor support</span></div></div><!-- /#benefit-list_404 --><!-- #pricing-plan-1_405 --><div class="glass-card rounded-3xl p-5 radio-active flex items-center justify-between border-2" data-navigates-to="learning_dashboard.html" style="; cursor: pointer;"><div class="flex items-center gap-4"><div class="w-6 h-6 rounded-full border-2 border-white flex items-center justify-center"><div class="w-3 h-3 bg-white rounded-full"></div></div><div><p class="text-white font-bold">Yearly Plan</p><p class="text-white/60 text-xs">Best Value • $9.99/mo</p></div></div><div class="text-right"><p class="text-white font-bold">$119.99</p><p class="text-emerald-400 text-[10px] font-bold uppercase">Save 50%</p></div></div><!-- /#pricing-plan-1_405 --><!-- #pricing-plan-2_406 --><div class="glass-card rounded-3xl p-5 flex items-center justify-between" data-navigates-to="learning_dashboard.html" style="; cursor: pointer;"><div class="flex items-center gap-4"><div class="w-6 h-6 rounded-full border-2 border-white/20"></div><div><p class="text-white font-medium">Monthly Plan</p><p class="text-white/60 text-xs">Flexible • Cancel anytime</p></div></div><div class="text-right"><p class="text-white font-bold">$19.99</p></div></div><!-- /#pricing-plan-2_406 --><!-- #trust-badges_407 --><div class="flex justify-center gap-8 pt-4 opacity-50"><iconify-icon class="text-white text-3xl" icon="simple-icons:applepay"></iconify-icon><iconify-icon class="text-white text-3xl" icon="simple-icons:googlepay"></iconify-icon><iconify-icon class="text-white text-3xl" icon="simple-icons:stripe"></iconify-icon></div><!-- /#trust-badges_407 --></div><!-- /#main-content-scroll_403 --><!-- #footer-actions_408 --><div class="relative z-20 p-6 pb-12 space-y-4"><button class="w-full h-[60px] bg-white text-purple-700 font-extrabold rounded-2xl shadow-xl active:scale-95 transition-transform" data-navigates-to="learning_dashboard.html" style="; cursor: pointer;">Start Free Trial &amp; Subscribe</button><p class="text-white/40 text-[10px] text-center px-4">Terms apply. Recurring billing. Cancel 24h before trial ends to avoid charges.</p></div><!-- /#footer-actions_408 --></div></div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Collect all navigable elements with their targets
+        const hotspots = [];
+        document.querySelectorAll('[data-navigates-to]').forEach(el => {
+          hotspots.push({
+            element: el,
+            target: el.getAttribute('data-navigates-to'),
+            isScreenTap: el.getAttribute('data-screen-tap') === 'true'
+          });
+        });
+
+        // Document-level capture phase click handler
+        // Checks click position against element bounds - works regardless of z-index stacking
+        document.addEventListener('click', (e) => {
+          const clickX = e.clientX;
+          const clickY = e.clientY;
+
+          // First check screen-tap (tap anywhere) connections
+          const screenTapHotspot = hotspots.find(h => h.isScreenTap);
+          if (screenTapHotspot && screenTapHotspot.target) {
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.href = screenTapHotspot.target;
+            return;
+          }
+
+          // Check each hotspot element's bounds
+          for (const hotspot of hotspots) {
+            if (hotspot.isScreenTap) continue; // Already handled above
+            try {
+              const rect = hotspot.element.getBoundingClientRect();
+              if (clickX >= rect.left && clickX <= rect.right &&
+                  clickY >= rect.top && clickY <= rect.bottom) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (hotspot.target) window.location.href = hotspot.target;
+                return;
+              }
+            } catch (err) {
+              // Element might have issues, skip it
+            }
+          }
+
+          // Prevent default for non-connected interactive elements
+          const clickedInteractive = e.target.closest('a, button, [onclick]');
+          if (clickedInteractive) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        }, true); // capture phase
+
+        // Prevent form submissions
+        document.addEventListener('submit', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }, true);
+      });
+    </script></body></html>

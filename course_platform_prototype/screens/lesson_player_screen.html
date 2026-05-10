@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><title>lesson_player_screen</title><script src="https://cdn.tailwindcss.com"></script><script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script><style>        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');        :root {            --aurora-1: #4F46E5;            --aurora-2: #7C3AED;            --aurora-3: #10B981;            --glass-bg: rgba(255, 255, 255, 0.08);            --glass-border: rgba(255, 255, 255, 0.15);            --glass-surface: rgba(15, 23, 42, 0.6);        }        body {            font-family: 'Inter', sans-serif;            margin: 0;            padding: 0;            background-color: #000000;        }        .iphone-frame {            width: 393px;            height: 852px;            background-color: #0F172A;            position: relative;            border-radius: 0px;            box-shadow: 0 0 20px rgba(0,0,0,0.1);            overflow: hidden;            margin: 2rem auto;            display: flex;            flex-direction: column;        }        .aurora-bg {            position: absolute;            inset: 0;            background: radial-gradient(circle at 10% 90%, var(--aurora-1) 0%, transparent 40%),                        radial-gradient(circle at 90% 10%, var(--aurora-2) 0%, transparent 40%);            filter: blur(100px);            opacity: 0.4;            z-index: 0;        }        .glass-panel {            background: var(--glass-bg);            backdrop-filter: blur(20px);            -webkit-backdrop-filter: blur(20px);            border: 1px solid var(--glass-border);        }        .glass-surface {            background: var(--glass-surface);            backdrop-filter: blur(12px);            -webkit-backdrop-filter: blur(12px);            border: 1px solid var(--glass-border);        }        .video-container {            aspect-ratio: 16/9;            background: #000;            position: relative;            z-index: 10;        }        .progress-bar {            height: 4px;            background: rgba(255, 255, 255, 0.2);            border-radius: 2px;            overflow: hidden;        }        .progress-fill {            width: 65%;            height: 100%;            background: linear-gradient(90deg, #4F46E5, #10B981);        }        .hide-scrollbar::-webkit-scrollbar {            display: none;        }        .hide-scrollbar {            -ms-overflow-style: none;            scrollbar-width: none;        }    </style></head><body><div class="iphone-frame"><!-- #aurora-background_001 --><div class="aurora-bg"></div><!-- /#aurora-background_001 --><!-- #video-player-section_002 --><div class="video-container"><!-- Generation-Info: {"aspectRatio": "16:9", "background": "solid"} --><img alt="Luminous glass aesthetic, video frame showing high-definition tutorial on design theory with abstract glowing particles and glass interfaces" class="w-full h-full object-cover opacity-80" src="https://media.screensdesign.com/gasset/2bb53684-6f08-4acb-b703-bdea447fbf36.png"><div class="absolute inset-0 flex items-center justify-center"><button class="w-16 h-16 glass-panel rounded-full flex items-center justify-center text-white active:scale-90 transition-transform"><iconify-icon class="text-3xl ml-1" icon="lucide:play"></iconify-icon></button></div><div class="absolute bottom-0 left-0 right-0 p-4 space-y-2 bg-gradient-to-t from-black/80 to-transparent"><div class="flex justify-between text-white text-[10px] font-bold tracking-widest"><span>12:45</span><span>18:20</span></div><div class="progress-bar"><div class="progress-fill"></div></div></div></div><!-- /#video-player-section_002 --><!-- #main-content_003 --><div class="flex-1 overflow-y-auto hide-scrollbar relative z-10"><div class="px-6 py-8 space-y-6"><!-- #lesson-header_004 --><div class="space-y-2"><p class="text-indigo-400 text-[10px] font-bold uppercase tracking-[0.2em]">Chapter 2 • Lesson 4</p><h1 class="text-white text-2xl font-bold leading-tight">Advanced Layer Blurring and Depth Effects</h1></div><!-- /#lesson-header_004 --><!-- #action-row_005 --><div class="flex items-center gap-4"><button class="flex-1 h-12 glass-panel rounded-2xl flex items-center justify-center gap-2 text-white text-sm font-semibold active:scale-95 transition-transform"><iconify-icon class="text-emerald-400 text-lg" icon="lucide:check-circle"></iconify-icon>                        Mark Completed                    </button><button class="w-12 h-12 glass-panel rounded-2xl flex items-center justify-center text-white active:scale-95 transition-transform"><iconify-icon class="text-lg" icon="lucide:share-2"></iconify-icon></button></div><!-- /#action-row_005 --><!-- #description_006 --><div class="glass-surface rounded-3xl p-6"><h3 class="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-3">About this lesson</h3><p class="text-white/80 text-sm leading-relaxed">                        In this session, we deep dive into the technical nuances of backdrop filters in modern OS development. We'll explore how to balance performance with visual fidelity, ensuring your gradients maintain a luminous quality even on lower-end devices.                     </p></div><!-- /#description_006 --><!-- #resources_007 --><div class="space-y-3"><h3 class="text-white/40 text-[10px] font-bold uppercase tracking-widest px-2">Downloadable Resources</h3><div class="glass-panel rounded-2xl p-4 flex items-center justify-between active:bg-white/5 transition-colors"><div class="flex items-center gap-3"><iconify-icon class="text-indigo-400 text-xl" icon="lucide:file-text"></iconify-icon><span class="text-white text-sm">lesson_notes.pdf</span></div><iconify-icon class="text-white/20" icon="lucide:download"></iconify-icon></div></div><!-- /#resources_007 --></div></div><!-- /#main-content_003 --><!-- #navigation-footer_008 --><div class="relative z-20 glass-panel border-t-0 border-x-0 rounded-t-[32px] p-6 pb-10"><div class="flex items-center justify-between gap-4"><button class="flex-1 h-14 glass-panel rounded-2xl flex items-center justify-center gap-2 text-white/50 text-sm font-bold active:scale-95 transition-transform" data-navigates-to="course_details_screen.html" style="; cursor: pointer;"><iconify-icon icon="lucide:chevron-left"></iconify-icon>                    Previous                </button><button class="flex-1 h-14 bg-indigo-600 rounded-2xl flex items-center justify-center gap-2 text-white text-sm font-bold active:scale-95 transition-transform shadow-[0_0_20px_rgba(79,70,229,0.3)]">                    Next Lesson                    <iconify-icon icon="lucide:chevron-right"></iconify-icon></button></div></div><!-- /#navigation-footer_008 --></div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Collect all navigable elements with their targets
+        const hotspots = [];
+        document.querySelectorAll('[data-navigates-to]').forEach(el => {
+          hotspots.push({
+            element: el,
+            target: el.getAttribute('data-navigates-to'),
+            isScreenTap: el.getAttribute('data-screen-tap') === 'true'
+          });
+        });
+
+        // Document-level capture phase click handler
+        // Checks click position against element bounds - works regardless of z-index stacking
+        document.addEventListener('click', (e) => {
+          const clickX = e.clientX;
+          const clickY = e.clientY;
+
+          // First check screen-tap (tap anywhere) connections
+          const screenTapHotspot = hotspots.find(h => h.isScreenTap);
+          if (screenTapHotspot && screenTapHotspot.target) {
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.href = screenTapHotspot.target;
+            return;
+          }
+
+          // Check each hotspot element's bounds
+          for (const hotspot of hotspots) {
+            if (hotspot.isScreenTap) continue; // Already handled above
+            try {
+              const rect = hotspot.element.getBoundingClientRect();
+              if (clickX >= rect.left && clickX <= rect.right &&
+                  clickY >= rect.top && clickY <= rect.bottom) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (hotspot.target) window.location.href = hotspot.target;
+                return;
+              }
+            } catch (err) {
+              // Element might have issues, skip it
+            }
+          }
+
+          // Prevent default for non-connected interactive elements
+          const clickedInteractive = e.target.closest('a, button, [onclick]');
+          if (clickedInteractive) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        }, true); // capture phase
+
+        // Prevent form submissions
+        document.addEventListener('submit', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }, true);
+      });
+    </script></body></html>

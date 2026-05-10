@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><title>path_confirmation_screen</title><script src="https://cdn.tailwindcss.com"></script><script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script><style>    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');        :root {      --aurora-1: #4F46E5;      --aurora-2: #10B981;      --glass-bg: rgba(255, 255, 255, 0.1);      --glass-border: rgba(255, 255, 255, 0.2);    }    body {      font-family: 'Inter', sans-serif;      margin: 0;      padding: 0;      background-color: #f3f4f6;    }    .iphone-frame {      width: 393px;      height: 852px;      background-color: #ffffff;      position: relative;      border-radius: 0px;      box-shadow: 0 0 20px rgba(0,0,0,0.1);      overflow: hidden;      margin: 2rem auto;    }    .aurora-bg {      position: absolute;      inset: 0;      background: radial-gradient(circle at top right, var(--aurora-1), transparent),                  radial-gradient(circle at bottom left, var(--aurora-2), transparent);      filter: blur(100px);      z-index: 0;    }    .glass-card {      background: var(--glass-bg);      backdrop-filter: blur(20px);      -webkit-backdrop-filter: blur(20px);      border: 1px solid var(--glass-border);    }    .pulse-ring {      animation: pulse 3s infinite;    }    @keyframes pulse {      0% { transform: scale(0.95); opacity: 0.5; }      50% { transform: scale(1.05); opacity: 0.8; }      100% { transform: scale(0.95); opacity: 0.5; }    }  </style></head><body><div class="iphone-frame"><!-- #aurora-background_301 --><div class="aurora-bg"></div><!-- /#aurora-background_301 --><div class="relative z-10 h-full flex flex-col items-center justify-center px-8 text-center"><!-- #visual-reinforcement_302 --><div class="relative mb-12"><div class="w-48 h-48 rounded-full glass-card flex items-center justify-center pulse-ring"><div class="w-32 h-32 rounded-full bg-emerald-500/20 flex items-center justify-center"><iconify-icon class="text-emerald-500 text-6xl" icon="lucide:check-circle-2"></iconify-icon></div></div><!-- Generation-Info: {"aspectRatio": "1:1", "background": "transparent"} --><img alt="Luminous glass aesthetic, 3D abstract translucent floating nodes connected by light filaments representing a custom neural network or path on a white background" class="absolute -top-10 -right-10 w-24 h-24 opacity-60" src="https://media.screensdesign.com/gasset/750055c0-f9ef-4ff5-bdde-dc8086dbf954.png"></div><!-- /#visual-reinforcement_302 --><!-- #text-content_303 --><h2 class="text-white text-4xl font-bold mb-4 tracking-tight">We've Got This!</h2><p class="text-blue-100 text-lg mb-10 opacity-90">            Your custom <span class="text-emerald-300 font-bold underline">Programming</span> path is ready. We've curated the best lessons to help you achieve your goals in record time.          </p><!-- /#text-content_303 --><!-- #goal-summary_304 --><div class="w-full glass-card rounded-3xl p-6 text-left space-y-4"><div class="flex items-center gap-3"><iconify-icon class="text-white/60" icon="lucide:calendar"></iconify-icon><span class="text-white text-sm">12-week intensive curriculum</span></div><div class="flex items-center gap-3"><iconify-icon class="text-white/60" icon="lucide:award"></iconify-icon><span class="text-white text-sm">Industry-recognized certificate</span></div><div class="flex items-center gap-3"><iconify-icon class="text-white/60" icon="lucide:users"></iconify-icon><span class="text-white text-sm">Access to student community</span></div></div><!-- /#goal-summary_304 --><!-- #footer-action_305 --><div class="mt-12 w-full"><button class="w-full h-[60px] bg-white text-indigo-700 font-bold rounded-2xl shadow-xl active:scale-95 transition-transform" data-navigates-to="subscription_paywall_screen.html" style="; cursor: pointer;">Reveal My Plan</button></div><!-- /#footer-action_305 --></div></div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Collect all navigable elements with their targets
+        const hotspots = [];
+        document.querySelectorAll('[data-navigates-to]').forEach(el => {
+          hotspots.push({
+            element: el,
+            target: el.getAttribute('data-navigates-to'),
+            isScreenTap: el.getAttribute('data-screen-tap') === 'true'
+          });
+        });
+
+        // Document-level capture phase click handler
+        // Checks click position against element bounds - works regardless of z-index stacking
+        document.addEventListener('click', (e) => {
+          const clickX = e.clientX;
+          const clickY = e.clientY;
+
+          // First check screen-tap (tap anywhere) connections
+          const screenTapHotspot = hotspots.find(h => h.isScreenTap);
+          if (screenTapHotspot && screenTapHotspot.target) {
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.href = screenTapHotspot.target;
+            return;
+          }
+
+          // Check each hotspot element's bounds
+          for (const hotspot of hotspots) {
+            if (hotspot.isScreenTap) continue; // Already handled above
+            try {
+              const rect = hotspot.element.getBoundingClientRect();
+              if (clickX >= rect.left && clickX <= rect.right &&
+                  clickY >= rect.top && clickY <= rect.bottom) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (hotspot.target) window.location.href = hotspot.target;
+                return;
+              }
+            } catch (err) {
+              // Element might have issues, skip it
+            }
+          }
+
+          // Prevent default for non-connected interactive elements
+          const clickedInteractive = e.target.closest('a, button, [onclick]');
+          if (clickedInteractive) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        }, true); // capture phase
+
+        // Prevent form submissions
+        document.addEventListener('submit', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }, true);
+      });
+    </script></body></html>

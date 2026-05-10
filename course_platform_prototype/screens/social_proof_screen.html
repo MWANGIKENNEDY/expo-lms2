@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><title>social_proof_screen</title><script src="https://cdn.tailwindcss.com"></script><script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script><style>    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');        :root {      --aurora-1: #1E3A8A;      --aurora-2: #5B21B6;      --aurora-3: #10B981;      --glass-bg: rgba(255, 255, 255, 0.1);      --glass-border: rgba(255, 255, 255, 0.15);    }    body {      font-family: 'Inter', sans-serif;      margin: 0;      padding: 0;      background-color: #f3f4f6;    }    .iphone-frame {      width: 393px;      height: 852px;      background-color: #0F172A;      position: relative;      border-radius: 0px;      box-shadow: 0 0 20px rgba(0,0,0,0.1);      overflow: hidden;      margin: 2rem auto;    }    .aurora-bg {      position: absolute;      inset: 0;      background: radial-gradient(circle at 20% 30%, var(--aurora-1) 0%, transparent 50%),                  radial-gradient(circle at 80% 70%, var(--aurora-2) 0%, transparent 50%),                  radial-gradient(circle at 50% 50%, var(--aurora-3) 0%, transparent 60%);      filter: blur(100px);      opacity: 0.6;      z-index: 0;    }    .glass-panel {      background: var(--glass-bg);      backdrop-filter: blur(16px);      -webkit-backdrop-filter: blur(16px);      border: 1px solid var(--glass-border);    }    .testimonial-card {      transition: transform 0.2s ease;    }  </style></head><body><div class="iphone-frame"><!-- #aurora-background_101 --><div class="aurora-bg"></div><!-- /#aurora-background_101 --><div class="relative z-10 h-full flex flex-col"><!-- #header_102 --><div class="px-6 pt-16 pb-8 text-center"><h2 class="text-white text-3xl font-bold mb-3 tracking-tight">Join a Community of Achievers</h2><p class="text-blue-100/70 text-base">Trusted by over 1.2M learners worldwide to reach their career goals.</p></div><!-- /#header_102 --><!-- #main-content-scroll_103 --><div class="flex-1 overflow-y-auto px-6 space-y-6"><!-- #stats-grid_104 --><div class="grid grid-cols-2 gap-4"><div class="glass-panel rounded-3xl p-5 text-center"><p class="text-emerald-400 text-2xl font-bold">4.9/5</p><p class="text-white/60 text-[10px] uppercase tracking-widest mt-1">App Store Rating</p></div><div class="glass-panel rounded-3xl p-5 text-center"><p class="text-purple-400 text-2xl font-bold">98%</p><p class="text-white/60 text-[10px] uppercase tracking-widest mt-1">Success Rate</p></div></div><!-- /#stats-grid_104 --><!-- #testimonial-1_105 --><div class="glass-panel rounded-3xl p-6 testimonial-card"><div class="flex items-center gap-4 mb-4"><div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white/20"><!-- Generation-Info: {"aspectRatio": "1:1", "background": "solid"} --><img alt="Luminous glass aesthetic, portrait of a young professional woman smiling confidently with soft lighting" class="w-full h-full object-cover" src="https://media.screensdesign.com/afprjsia/c4b1ad9c-3e44-4391-b4e9-9ea508f16835.png"></div><div><h4 class="text-white font-semibold">Sarah Jenkins</h4><div class="flex gap-0.5"><iconify-icon class="text-yellow-400 text-sm" icon="material-symbols:star"></iconify-icon><iconify-icon class="text-yellow-400 text-sm" icon="material-symbols:star"></iconify-icon><iconify-icon class="text-yellow-400 text-sm" icon="material-symbols:star"></iconify-icon><iconify-icon class="text-yellow-400 text-sm" icon="material-symbols:star"></iconify-icon><iconify-icon class="text-yellow-400 text-sm" icon="material-symbols:star"></iconify-icon></div></div></div><p class="text-blue-50/80 text-sm italic italic leading-relaxed">            "The glass UI is beautiful, but the content is even better. I finished my UI/UX certificate in 3 months and landed my dream job!"          </p></div><!-- /#testimonial-1_105 --><!-- #testimonial-2_106 --><div class="glass-panel rounded-3xl p-6 testimonial-card opacity-80"><div class="flex items-center gap-4 mb-4"><div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white/20"><!-- Generation-Info: {"aspectRatio": "1:1", "background": "solid"} --><img alt="Luminous glass aesthetic, portrait of a cheerful young man wearing tech-savvy glasses with modern lighting effects" class="w-full h-full object-cover" src="https://media.screensdesign.com/afprjsia/67024a3f-4786-4e3a-85d9-e553419c57d0.png"></div><div><h4 class="text-white font-semibold">Marcus Chen</h4><div class="flex gap-0.5"><iconify-icon class="text-yellow-400 text-sm" icon="material-symbols:star"></iconify-icon><iconify-icon class="text-yellow-400 text-sm" icon="material-symbols:star"></iconify-icon><iconify-icon class="text-yellow-400 text-sm" icon="material-symbols:star"></iconify-icon><iconify-icon class="text-yellow-400 text-sm" icon="material-symbols:star"></iconify-icon><iconify-icon class="text-yellow-400 text-sm" icon="material-symbols:star"></iconify-icon></div></div></div><p class="text-blue-50/80 text-sm italic leading-relaxed">            "I've tried many LMS apps, but ULearner's interactive quizzes and certificates actually made me stick to my goals."          </p></div><!-- /#testimonial-2_106 --></div><!-- /#main-content-scroll_103 --><!-- #footer-actions_107 --><div class="relative z-20 p-6 pb-12"><!-- #primary-button_108 --><button class="w-full h-[60px] bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold rounded-2xl shadow-lg active:scale-95 transition-transform flex items-center justify-center gap-2" data-navigates-to="features_showcase_screen.html" style="; cursor: pointer;">          Continue to Journey        </button><!-- /#primary-button_108 --></div><!-- /#footer-actions_107 --></div></div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Collect all navigable elements with their targets
+        const hotspots = [];
+        document.querySelectorAll('[data-navigates-to]').forEach(el => {
+          hotspots.push({
+            element: el,
+            target: el.getAttribute('data-navigates-to'),
+            isScreenTap: el.getAttribute('data-screen-tap') === 'true'
+          });
+        });
+
+        // Document-level capture phase click handler
+        // Checks click position against element bounds - works regardless of z-index stacking
+        document.addEventListener('click', (e) => {
+          const clickX = e.clientX;
+          const clickY = e.clientY;
+
+          // First check screen-tap (tap anywhere) connections
+          const screenTapHotspot = hotspots.find(h => h.isScreenTap);
+          if (screenTapHotspot && screenTapHotspot.target) {
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.href = screenTapHotspot.target;
+            return;
+          }
+
+          // Check each hotspot element's bounds
+          for (const hotspot of hotspots) {
+            if (hotspot.isScreenTap) continue; // Already handled above
+            try {
+              const rect = hotspot.element.getBoundingClientRect();
+              if (clickX >= rect.left && clickX <= rect.right &&
+                  clickY >= rect.top && clickY <= rect.bottom) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (hotspot.target) window.location.href = hotspot.target;
+                return;
+              }
+            } catch (err) {
+              // Element might have issues, skip it
+            }
+          }
+
+          // Prevent default for non-connected interactive elements
+          const clickedInteractive = e.target.closest('a, button, [onclick]');
+          if (clickedInteractive) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        }, true); // capture phase
+
+        // Prevent form submissions
+        document.addEventListener('submit', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }, true);
+      });
+    </script></body></html>

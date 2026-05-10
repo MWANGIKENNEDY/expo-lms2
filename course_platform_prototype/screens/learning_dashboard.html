@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><title>learning_dashboard</title><script src="https://cdn.tailwindcss.com"></script><script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script><style>    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');        :root {      --aurora-1: #4F46E5;      --aurora-2: #7C3AED;      --aurora-3: #10B981;      --glass-bg: rgba(255, 255, 255, 0.1);      --glass-border: rgba(255, 255, 255, 0.15);    }    body {      font-family: 'Inter', sans-serif;      background-color: #f3f4f6;      margin: 0;    }    .iphone-frame {      width: 393px;      height: 852px;      background-color: #0F172A;      position: relative;      border-radius: 0px;      box-shadow: 0 0 20px rgba(0,0,0,0.1);      overflow: hidden;      margin: 2rem auto;    }    .aurora-bg {      position: absolute;      inset: 0;      background: radial-gradient(circle at 10% 10%, var(--aurora-1) 0%, transparent 40%),                  radial-gradient(circle at 90% 40%, var(--aurora-2) 0%, transparent 40%),                  radial-gradient(circle at 50% 90%, var(--aurora-3) 0%, transparent 40%);      filter: blur(80px);      opacity: 0.7;      z-index: 0;    }    .glass-card {      background: var(--glass-bg);      backdrop-filter: blur(20px);      -webkit-backdrop-filter: blur(20px);      border: 1px solid var(--glass-border);    }    .streak-glow {      box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);    }    .progress-ring-circle {      transition: stroke-dashoffset 0.35s;      transform: rotate(-90deg);      transform-origin: 50% 50%;    }    .hide-scrollbar::-webkit-scrollbar {      display: none;    }    .hide-scrollbar {      -ms-overflow-style: none;      scrollbar-width: none;    }  </style></head><body><div class="iphone-frame"><!-- #aurora-background_001 --><div class="aurora-bg"></div><!-- /#aurora-background_001 --><div class="relative z-10 flex flex-col h-full"><!-- #header_002 --><div class="flex items-center justify-between px-6 pt-16 pb-6"><div class="flex items-center gap-3" data-navigates-to="course_discovery_screen.html" style="; cursor: pointer;"><div class="w-10 h-10 rounded-full border-2 border-white/20 overflow-hidden"><!-- Generation-Info: {"aspectRatio": "1:1", "background": "solid"} --><img alt="Luminous glass aesthetic, portrait of a young professional woman smiling confidently with soft lighting" class="w-full h-full object-cover" src="https://media.screensdesign.com/gasset/0c4c31a3-0d82-43d2-8393-98c2fdfabb8c.png"></div><div><p class="text-white/60 text-[10px] uppercase tracking-widest">Hello, Sarah</p><p class="text-white font-bold">Keep it up! 🔥</p></div></div><!-- #streak-counter_003 --><div class="glass-card streak-glow px-3 py-1.5 rounded-full flex items-center gap-2"><iconify-icon class="text-amber-400 text-xl" icon="lucide:flame"></iconify-icon><span class="text-white font-bold text-sm">12 Days</span></div><!-- /#streak-counter_003 --></div><!-- /#header_002 --><!-- #main-scroll_004 --><div class="flex-1 overflow-y-auto hide-scrollbar px-6 space-y-6"><!-- #current-course-card_005 --><div class="glass-card rounded-[32px] p-6"><div class="flex items-center justify-between mb-4"><div><p class="text-white/60 text-xs mb-1 uppercase tracking-wider">Currently Learning</p><h3 class="text-white font-bold text-xl">Advanced UI Design</h3></div><!-- #progress-ring_006 --><div class="relative w-16 h-16"><svg class="w-full h-full"><circle class="text-white/10" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-width="4"></circle><circle class="text-indigo-400 progress-ring-circle" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-dasharray="175.9" stroke-dashoffset="44" stroke-linecap="round" stroke-width="4"></circle></svg><span class="absolute inset-0 flex items-center justify-center text-white text-[10px] font-bold">75%</span></div><!-- /#progress-ring_006 --></div><!-- #continue-learning-action_007 --><div class="glass-card bg-white/10 rounded-2xl p-4 flex items-center justify-between active:scale-[0.98] transition-transform"><div class="flex items-center gap-3"><div class="w-10 h-10 bg-indigo-500 rounded-xl flex items-center justify-center shadow-lg"><iconify-icon class="text-white text-xl ml-0.5" icon="lucide:play" data-navigates-to="course_discovery_screen.html" style="; cursor: pointer;"></iconify-icon></div><div><p class="text-white text-sm font-semibold">Lesson 4: Glassmorphism</p><p class="text-white/50 text-[10px]">Remaining: 12m 45s</p></div></div><iconify-icon class="text-white/40" icon="lucide:chevron-right"></iconify-icon></div><!-- /#continue-learning-action_007 --></div><!-- /#current-course-card_005 --><!-- #section-recommended_008 --><div class="space-y-4"><div class="flex items-center justify-between"><h4 class="text-white font-bold text-lg">Recommended for You</h4><button class="text-indigo-400 text-xs font-medium">View All</button></div><!-- #carousel_009 --><div class="flex overflow-x-auto gap-4 hide-scrollbar -mx-2 px-2 pb-4"><!-- #course-card-1_010 --><div class="min-w-[200px] glass-card rounded-3xl overflow-hidden active:scale-95 transition-transform" data-navigates-to="course_discovery_screen.html" style="; cursor: pointer;"><div class="h-28 relative"><!-- Generation-Info: {"aspectRatio": "16:9", "background": "solid"} --><img alt="Luminous glass aesthetic, premium online course thumbnail with vibrant glowing accents showing a Python logo in neon green" class="w-full h-full object-cover" src="https://media.screensdesign.com/gasset/39b0390b-0bda-47cc-bf53-e50f1940d3ab.png"><div class="absolute top-2 right-2 glass-card px-2 py-0.5 rounded-full"><span class="text-[10px] text-white font-bold">4.8 ★</span></div></div><div class="p-4"><p class="text-white/60 text-[10px] uppercase mb-1">Development</p><h5 class="text-white font-bold text-sm leading-tight">Python for Data Science</h5></div></div><!-- /#course-card-1_010 --><!-- #course-card-2_011 --><div class="min-w-[200px] glass-card rounded-3xl overflow-hidden active:scale-95 transition-transform" data-navigates-to="course_discovery_screen.html" style="; cursor: pointer;"><div class="h-28 relative"><!-- Generation-Info: {"aspectRatio": "16:9", "background": "solid"} --><img alt="Luminous glass aesthetic, premium online course thumbnail with vibrant glowing accents showing 3D financial charts in pink and blue" class="w-full h-full object-cover" src="https://media.screensdesign.com/gasset/0e77f03e-34b0-470e-8de0-789d5e2c5788.png"><div class="absolute top-2 right-2 glass-card px-2 py-0.5 rounded-full"><span class="text-[10px] text-white font-bold">4.9 ★</span></div></div><div class="p-4"><p class="text-white/60 text-[10px] uppercase mb-1">Business</p><h5 class="text-white font-bold text-sm leading-tight">Global Strategy Mastery</h5></div></div><!-- /#course-card-2_011 --><!-- #course-card-3_012 --><div class="min-w-[200px] glass-card rounded-3xl overflow-hidden active:scale-95 transition-transform"><div class="h-28 relative"><!-- Generation-Info: {"aspectRatio": "16:9", "background": "solid"} --><img alt="Luminous glass aesthetic, premium online course thumbnail with vibrant glowing accents showing abstract colorful shapes for creativity" class="w-full h-full object-cover" src="https://media.screensdesign.com/gasset/42ed4b35-22b1-408a-aba8-ab983730da83.png"><div class="absolute top-2 right-2 glass-card px-2 py-0.5 rounded-full"><span class="text-[10px] text-white font-bold">4.7 ★</span></div></div><div class="p-4"><p class="text-white/60 text-[10px] uppercase mb-1">Creative</p><h5 class="text-white font-bold text-sm leading-tight">The Art of Storytelling</h5></div></div><!-- /#course-card-3_012 --></div><!-- /#carousel_009 --></div><!-- /#section-recommended_008 --><!-- #achievement-card_013 --><div class="glass-card rounded-3xl p-5 flex items-center gap-4"><div class="w-14 h-14 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400"><iconify-icon class="text-3xl" icon="lucide:trophy"></iconify-icon></div><div><p class="text-white font-bold">New Achievement!</p><p class="text-white/60 text-xs">You've unlocked 'Consistent Learner' badge</p></div></div><!-- /#achievement-card_013 --><div class="h-20"></div><!-- Spacer for Tab Bar --></div><!-- /#main-scroll_004 --><!-- #tab-bar_014 --><div class="absolute bottom-0 left-0 right-0 glass-card border-t-0 border-x-0 rounded-t-[32px] px-8 py-6 flex items-center justify-between"><button class="flex flex-col items-center gap-1 text-indigo-400"><iconify-icon class="text-2xl" icon="lucide:home"></iconify-icon><span class="text-[10px] font-bold">Home</span></button><button class="flex flex-col items-center gap-1 text-white/40 active:text-white" data-navigates-to="course_discovery_screen.html" style="; cursor: pointer;"><iconify-icon class="text-2xl" icon="lucide:book-open"></iconify-icon><span class="text-[10px] font-bold">Courses</span></button><button class="flex flex-col items-center gap-1 text-white/40 active:text-white" data-navigates-to="course_discovery_screen.html" style="; cursor: pointer;"><iconify-icon class="text-2xl" icon="lucide:search"></iconify-icon><span class="text-[10px] font-bold">Search</span></button><button class="flex flex-col items-center gap-1 text-white/40 active:text-white"><iconify-icon class="text-2xl" icon="lucide:user"></iconify-icon><span class="text-[10px] font-bold">Profile</span></button></div><!-- /#tab-bar_014 --></div></div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Collect all navigable elements with their targets
+        const hotspots = [];
+        document.querySelectorAll('[data-navigates-to]').forEach(el => {
+          hotspots.push({
+            element: el,
+            target: el.getAttribute('data-navigates-to'),
+            isScreenTap: el.getAttribute('data-screen-tap') === 'true'
+          });
+        });
+
+        // Document-level capture phase click handler
+        // Checks click position against element bounds - works regardless of z-index stacking
+        document.addEventListener('click', (e) => {
+          const clickX = e.clientX;
+          const clickY = e.clientY;
+
+          // First check screen-tap (tap anywhere) connections
+          const screenTapHotspot = hotspots.find(h => h.isScreenTap);
+          if (screenTapHotspot && screenTapHotspot.target) {
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.href = screenTapHotspot.target;
+            return;
+          }
+
+          // Check each hotspot element's bounds
+          for (const hotspot of hotspots) {
+            if (hotspot.isScreenTap) continue; // Already handled above
+            try {
+              const rect = hotspot.element.getBoundingClientRect();
+              if (clickX >= rect.left && clickX <= rect.right &&
+                  clickY >= rect.top && clickY <= rect.bottom) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (hotspot.target) window.location.href = hotspot.target;
+                return;
+              }
+            } catch (err) {
+              // Element might have issues, skip it
+            }
+          }
+
+          // Prevent default for non-connected interactive elements
+          const clickedInteractive = e.target.closest('a, button, [onclick]');
+          if (clickedInteractive) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        }, true); // capture phase
+
+        // Prevent form submissions
+        document.addEventListener('submit', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }, true);
+      });
+    </script></body></html>
