@@ -107,7 +107,6 @@ function RootLayoutNav() {
 
           {/* Has Profile -> Full App Access */}
           <Stack.Protected guard={!!profile}>
-            {/* Entry point triggers the Redirect to tabs */}
             <Stack.Screen name="index" />
             <Stack.Screen name="(tabs)" />
             <Stack.Screen 

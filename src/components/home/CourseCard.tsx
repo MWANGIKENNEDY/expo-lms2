@@ -37,7 +37,7 @@ export function CourseCard({
     <TouchableOpacity 
       activeOpacity={0.9} 
       className="mr-4"
-      onPress={onPress || (() => router.push({ pathname: "/course/[id]", params: { id } } as any))}
+      onPress={onPress || (() => router.push(`/course/${id}`))}
     >
       <BlurView
         intensity={10}

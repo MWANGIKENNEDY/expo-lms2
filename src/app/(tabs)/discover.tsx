@@ -77,7 +77,7 @@ export default function SearchScreen() {
         renderItem={({ item }) => (
           <TouchableOpacity 
             style={styles.courseCard}
-            onPress={() => router.push({ pathname: '/course/[id]', params: { id: item.id } })}
+            onPress={() => router.push(`/course/${item.id}`)}
           >
             <View style={styles.thumbnailContainer}>
               <Image 

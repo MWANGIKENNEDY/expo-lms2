@@ -9,6 +9,7 @@ import {
   StatusBar,
   ActivityIndicator
 } from 'react-native';
+import { useVideoPlayer, VideoView } from 'expo-video';
 import { useLocalSearchParams, router } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
@@ -27,9 +28,14 @@ import { useCourse } from '@/lib/api/courses';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
+const TEST_VIDEO_URL = 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4';
+
 export default function VideoPlayerScreen() {
   const { courseId } = useLocalSearchParams<{ courseId: string }>();
   const { data: course, isLoading } = useCourse(courseId || '');
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [isBuffering, setIsBuffering] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
 
@@ -42,6 +48,56 @@ export default function VideoPlayerScreen() {
       }))
     );
   }, [course]);
+
+  const currentLesson = lessons[currentLessonIndex];
+
+  const player = useVideoPlayer(currentLesson?.video_url || TEST_VIDEO_URL, (player) => {
+    player.loop = false;
+    if (isPlaying) {
+      player.play();
+    }
+  });
+
+  useEffect(() => {
+    const playSubscription = player.addListener('playingChange', (isPlaying) => {
+      setIsPlaying(isPlaying);
+    });
+    
+    const timeSubscription = player.addListener('timeUpdate', (event) => {
+      setCurrentTime(event.currentTime);
+    });
+
+    const durationSubscription = player.addListener('durationChange', (event) => {
+      setDuration(event.duration);
+    });
+
+    const bufferingSubscription = player.addListener('bufferingChange', (event) => {
+      setIsBuffering(event.isBuffering);
+    });
+
+    // Duration can be set when it changes or when the player is ready
+    setDuration(player.duration || 0);
+
+    return () => {
+      playSubscription.remove();
+      timeSubscription.remove();
+      durationSubscription.remove();
+      bufferingSubscription.remove();
+    };
+  }, [player]);
+
+  useEffect(() => {
+    setCurrentTime(0);
+    setDuration(0);
+  }, [currentLessonIndex]);
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
   if (isLoading) {
     return (
@@ -61,8 +117,6 @@ export default function VideoPlayerScreen() {
       </View>
     );
   }
-
-  const currentLesson = lessons[currentLessonIndex];
 
   return (
     <View style={styles.container}>
@@ -93,24 +147,29 @@ export default function VideoPlayerScreen() {
 
       {/* Video Area */}
       <View style={styles.videoSection}>
-        <View style={styles.videoPlaceholder}>
-          <BlurView intensity={20} tint="dark" style={styles.videoBlur}>
-            <TouchableOpacity 
-              onPress={() => setIsPlaying(!isPlaying)}
-              style={styles.playButton}
-            >
-              {isPlaying ? (
-                <Pause color="white" size={40} fill="white" />
-              ) : (
+        <VideoView
+          player={player}
+          style={styles.videoView}
+          allowsFullscreen
+          allowsPictureInPicture
+        />
+        {isBuffering && (
+          <View style={styles.videoOverlay}>
+            <ActivityIndicator color="white" size="large" />
+          </View>
+        )}
+        {!isPlaying && !isBuffering && (
+          <View style={styles.videoOverlay}>
+             <BlurView intensity={20} tint="dark" style={styles.videoBlur}>
+              <TouchableOpacity 
+                onPress={() => player.play()}
+                style={styles.playButton}
+              >
                 <Play color="white" size={40} fill="white" />
-              )}
-            </TouchableOpacity>
-          </BlurView>
-          <LinearGradient
-            colors={['rgba(0,0,0,0.5)', 'transparent']}
-            style={styles.videoTopGradient}
-          />
-        </View>
+              </TouchableOpacity>
+            </BlurView>
+          </View>
+        )}
       </View>
 
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
@@ -143,7 +202,13 @@ export default function VideoPlayerScreen() {
           
           <TouchableOpacity 
             style={styles.mainPlayToggle}
-            onPress={() => setIsPlaying(!isPlaying)}
+            onPress={() => {
+              if (isPlaying) {
+                player.pause();
+              } else {
+                player.play();
+              }
+            }}
           >
             <LinearGradient
               colors={['#6366F1', '#A855F7']}
@@ -166,12 +231,21 @@ export default function VideoPlayerScreen() {
 
         {/* Progress Bar */}
         <View style={styles.progressSection}>
-          <View style={styles.progressTrack}>
-            <View style={[styles.progressFill, { width: '45%' }]} />
-          </View>
+          <TouchableOpacity 
+            style={styles.progressTrack}
+            onPress={(e) => {
+              // Simple seek on tap (could be improved with a slider)
+              const touchX = e.nativeEvent.locationX;
+              const width = SCREEN_WIDTH - 48; // Padding 24 * 2
+              const seekTime = (touchX / width) * duration;
+              player.seekBy(seekTime - currentTime);
+            }}
+          >
+            <View style={[styles.progressFill, { width: `${progress}%` }]} />
+          </TouchableOpacity>
           <View style={styles.timeRow}>
-            <Text style={styles.timeText}>08:45</Text>
-            <Text style={styles.timeText}>15:00</Text>
+            <Text style={styles.timeText}>{formatTime(currentTime)}</Text>
+            <Text style={styles.timeText}>{formatTime(duration)}</Text>
           </View>
         </View>
 
@@ -260,6 +334,16 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH,
     height: 220,
     backgroundColor: '#000',
+    position: 'relative',
+  },
+  videoView: {
+    flex: 1,
+  },
+  videoOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.3)',
   },
   videoPlaceholder: {
     flex: 1,

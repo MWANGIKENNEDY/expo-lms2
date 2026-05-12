@@ -26,7 +26,7 @@ export function EnrolledCourseCard({
     <TouchableOpacity 
       activeOpacity={0.9}
       style={styles.container}
-      onPress={() => router.push({ pathname: '/player', params: { courseId: id } })}
+      onPress={() => router.push(`/player?courseId=${id}`)}
     >
       <BlurView intensity={15} tint="light" style={styles.blur}>
         <View style={styles.content}>
@@ -49,7 +49,7 @@ export function EnrolledCourseCard({
 
             <TouchableOpacity 
               style={styles.continueButton}
-              onPress={() => router.push({ pathname: '/player', params: { courseId: id } })}
+              onPress={() => router.push(`/player?courseId=${id}`)}
             >
               <LinearGradient
                 colors={['#6366F1', '#A855F7']}

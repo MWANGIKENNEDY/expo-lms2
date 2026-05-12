@@ -234,14 +234,14 @@ export default function CourseDetailScreen() {
             if (!enrollmentStatus) {
               enroll(course.id, {
                 onSuccess: () => {
-                  router.push({ pathname: '/player', params: { courseId: id } });
+                  router.push(`/player?courseId=${id}`);
                 },
                 onError: (error) => {
                   console.error('Failed to enroll:', error);
                 }
               });
             } else {
-              router.push({ pathname: '/player', params: { courseId: id } });
+              router.push(`/player?courseId=${id}`);
             }
           }}
         >

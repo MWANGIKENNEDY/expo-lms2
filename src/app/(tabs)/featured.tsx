@@ -139,7 +139,7 @@ export default function HomeScreen() {
                 progress={enrollment.progress || 0}
                 category="Design"
                 variant="large"
-                onPress={() => router.push({ pathname: '/player', params: { courseId: course.id } })}
+                onPress={() => router.push(`/player?courseId=${course.id}`)}
               />
             );
           })}
