@@ -45,7 +45,7 @@ export function useCourse(id: string) {
     queryFn: async () => {
       const { data, error } = await supabase
         .from('courses')
-        .select('*, chapters(*, lessons(*, lesson_resources(*)))')
+        .select('*, chapters(*, lessons(*))')
         .eq('id', id)
         .single();
 

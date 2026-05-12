@@ -34,6 +34,41 @@ export type Database = {
   }
   public: {
     Tables: {
+      chapters: {
+        Row: {
+          course_id: string
+          created_at: string | null
+          id: string
+          order_index: number | null
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          course_id: string
+          created_at?: string | null
+          id?: string
+          order_index?: number | null
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          course_id?: string
+          created_at?: string | null
+          id?: string
+          order_index?: number | null
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chapters_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       courses: {
         Row: {
           category: string | null
@@ -79,125 +114,33 @@ export type Database = {
         }
         Relationships: []
       }
-      chapters: {
-        Row: {
-          id: string
-          course_id: string
-          title: string
-          order_index: number | null
-          created_at: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          id?: string
-          course_id: string
-          title: string
-          order_index?: number | null
-          created_at?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          id?: string
-          course_id?: string
-          title?: string
-          order_index?: number | null
-          created_at?: string | null
-          updated_at?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "chapters_course_id_fkey"
-            columns: ["course_id"]
-            isOneToOne: false
-            referencedRelation: "courses"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      lessons: {
-        Row: {
-          id: string
-          course_id: string
-          chapter_id: string | null
-          title: string
-          content: string | null
-          video_url: string | null
-          order_index: number
-          duration_minutes: number | null
-          is_preview: boolean | null
-          created_at: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          id?: string
-          course_id: string
-          chapter_id?: string | null
-          title: string
-          content?: string | null
-          video_url?: string | null
-          order_index: number
-          duration_minutes?: number | null
-          is_preview?: boolean | null
-          created_at?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          id?: string
-          course_id?: string
-          chapter_id?: string | null
-          title?: string
-          content?: string | null
-          video_url?: string | null
-          order_index?: number
-          duration_minutes?: number | null
-          is_preview?: boolean | null
-          created_at?: string | null
-          updated_at?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "lessons_course_id_fkey"
-            columns: ["course_id"]
-            isOneToOne: false
-            referencedRelation: "courses"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "lessons_chapter_id_fkey"
-            columns: ["chapter_id"]
-            isOneToOne: false
-            referencedRelation: "chapters"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
       enrollments: {
         Row: {
-          id: string
-          user_id: string
           course_id: string
-          status: string | null
-          progress: number | null
           created_at: string | null
+          id: string
+          progress: number | null
+          status: string | null
           updated_at: string | null
+          user_id: string
         }
         Insert: {
-          id?: string
-          user_id: string
           course_id: string
-          status?: string | null
-          progress?: number | null
           created_at?: string | null
+          id?: string
+          progress?: number | null
+          status?: string | null
           updated_at?: string | null
+          user_id: string
         }
         Update: {
-          id?: string
-          user_id?: string
           course_id?: string
-          status?: string | null
-          progress?: number | null
           created_at?: string | null
+          id?: string
+          progress?: number | null
+          status?: string | null
           updated_at?: string | null
+          user_id?: string
         }
         Relationships: [
           {
@@ -206,97 +149,95 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "courses"
             referencedColumns: ["id"]
-          }
+          },
         ]
       }
-      lesson_resources: {
+      lessons: {
         Row: {
-          id: string
-          lesson_id: string
-          title: string
-          type: string
-          url: string
-          order_index: number | null
+          chapter_id: string | null
+          content: string | null
+          course_id: string
           created_at: string | null
+          duration_minutes: number | null
+          id: string
+          is_preview: boolean | null
+          order_index: number
+          resource_type: string | null
+          resource_url: string | null
+          title: string
           updated_at: string | null
+          video_url: string | null
         }
         Insert: {
+          chapter_id?: string | null
+          content?: string | null
+          course_id: string
+          created_at?: string | null
+          duration_minutes?: number | null
           id?: string
-          lesson_id: string
+          is_preview?: boolean | null
+          order_index: number
+          resource_type?: string | null
+          resource_url?: string | null
           title: string
-          type: string
-          url: string
-          order_index?: number | null
-          created_at?: string | null
           updated_at?: string | null
+          video_url?: string | null
         }
         Update: {
-          id?: string
-          lesson_id?: string
-          title?: string
-          type?: string
-          url?: string
-          order_index?: number | null
-          created_at?: string | null
-          updated_at?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "lesson_resources_lesson_id_fkey"
-            columns: ["lesson_id"]
-            isOneToOne: false
-            referencedRelation: "lessons"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      lesson_progress: {
-        Row: {
-          id: string
-          user_id: string
-          lesson_id: string
-          course_id: string
-          completed: boolean | null
-          last_position_seconds: number | null
-          created_at: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          id?: string
-          user_id: string
-          lesson_id: string
-          course_id: string
-          completed?: boolean | null
-          last_position_seconds?: number | null
-          created_at?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          id?: string
-          user_id?: string
-          lesson_id?: string
+          chapter_id?: string | null
+          content?: string | null
           course_id?: string
-          completed?: boolean | null
-          last_position_seconds?: number | null
           created_at?: string | null
+          duration_minutes?: number | null
+          id?: string
+          is_preview?: boolean | null
+          order_index?: number
+          resource_type?: string | null
+          resource_url?: string | null
+          title?: string
           updated_at?: string | null
+          video_url?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "lesson_progress_lesson_id_fkey"
-            columns: ["lesson_id"]
+            foreignKeyName: "lessons_chapter_id_fkey"
+            columns: ["chapter_id"]
             isOneToOne: false
-            referencedRelation: "lessons"
+            referencedRelation: "chapters"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "lesson_progress_course_id_fkey"
+            foreignKeyName: "lessons_course_id_fkey"
             columns: ["course_id"]
             isOneToOne: false
             referencedRelation: "courses"
             referencedColumns: ["id"]
-          }
+          },
         ]
+      }
+      profiles: {
+        Row: {
+          created_at: string | null
+          id: string
+          interest: string | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          interest?: string | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          interest?: string | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
       }
     }
     Views: {

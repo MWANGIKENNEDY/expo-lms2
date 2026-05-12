@@ -25,6 +25,7 @@ import {
   Download
 } from 'lucide-react-native';
 import { useCourse } from '@/lib/api/courses';
+import { useSupabase } from '@/lib/supabase';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -38,6 +39,8 @@ export default function VideoPlayerScreen() {
   const [isBuffering, setIsBuffering] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
+  const [signedVideoUrl, setSignedVideoUrl] = useState<string | null>(null);
+  const supabase = useSupabase();
 
   const lessons = React.useMemo(() => {
     if (!course?.chapters) return [];
@@ -51,9 +54,42 @@ export default function VideoPlayerScreen() {
 
   const currentLesson = lessons[currentLessonIndex];
 
-  const player = useVideoPlayer(currentLesson?.video_url || TEST_VIDEO_URL, (player) => {
+  // Logic to handle signed URLs for private Supabase Storage resources
+  useEffect(() => {
+    async function getSignedUrl() {
+      const url = currentLesson?.resource_url || currentLesson?.video_url;
+      
+      if (!url) {
+        setSignedVideoUrl(null);
+        return;
+      }
+
+      // If it's already a full URL (http/https), just use it
+      if (url.startsWith('http')) {
+        setSignedVideoUrl(url);
+        return;
+      }
+
+      // Otherwise, assume it's a path in the 'lesson-resources' bucket
+      try {
+        const { data, error } = await supabase.storage
+          .from('lesson-resources')
+          .createSignedUrl(url, 3600); // 1 hour expiry
+
+        if (error) throw error;
+        setSignedVideoUrl(data.signedUrl);
+      } catch (err) {
+        console.error('Error generating signed URL:', err);
+        setSignedVideoUrl(null);
+      }
+    }
+
+    getSignedUrl();
+  }, [currentLesson, supabase]);
+
+  const player = useVideoPlayer(signedVideoUrl || TEST_VIDEO_URL, (player) => {
     player.loop = false;
-    if (isPlaying) {
+    if (isPlaying && signedVideoUrl) {
       player.play();
     }
   });

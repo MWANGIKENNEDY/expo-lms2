@@ -33,17 +33,17 @@ USING (true);
 CREATE POLICY "Users can view their own enrollments" 
 ON public.enrollments FOR SELECT 
 TO authenticated 
-USING (auth.uid() = user_id);
+USING ((auth.jwt() ->> 'sub') = user_id);
 
 CREATE POLICY "Users can create their own enrollments" 
 ON public.enrollments FOR INSERT 
 TO authenticated 
-WITH CHECK (auth.uid() = user_id);
+WITH CHECK ((auth.jwt() ->> 'sub') = user_id);
 
 CREATE POLICY "Users can update their own progress" 
 ON public.enrollments FOR UPDATE 
 TO authenticated 
-USING (auth.uid() = user_id);
+USING ((auth.jwt() ->> 'sub') = user_id);
 
 -- Expose to API
 COMMENT ON TABLE public.lessons IS 'Course lessons for the LMS';

@@ -11,11 +11,8 @@ ADD COLUMN IF NOT EXISTS "resource_url" text,
 ADD COLUMN IF NOT EXISTS "resource_type" text CHECK (resource_type IN ('video', 'pdf', 'other'));
 
 -- 3. Storage RLS Policies
--- Enable RLS on storage.objects (usually enabled by default in Supabase)
-ALTER TABLE storage.objects ENABLE ROW LEVEL SECURITY;
-
 -- Drop existing policies if they exist to avoid conflicts during iteration
-DROP POLICY IF EXISTS "Public can view resources of published courses" ON storage.objects;
+DROP POLICY IF EXISTS "Authenticated users can view resources of published courses" ON storage.objects;
 DROP POLICY IF EXISTS "Instructors can manage own course resources" ON storage.objects;
 
 -- 3a. Allow authenticated users to view resources of published courses

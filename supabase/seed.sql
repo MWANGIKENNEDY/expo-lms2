@@ -214,4 +214,39 @@ INSERT INTO courses (
   );
 
 -- Add a comment to track when seed was last updated
-COMMENT ON TABLE courses IS 'Last seeded: 2026-04-24';
+COMMENT ON TABLE courses IS 'Last seeded: 2026-05-12';
+
+-- Insert sample chapters for the first course
+-- We use a subquery to get the ID of the first course
+DO $$
+DECLARE
+    course_id_1 UUID;
+    chapter_id_1 UUID;
+    chapter_id_2 UUID;
+BEGIN
+    SELECT id INTO course_id_1 FROM courses WHERE title = 'Introduction to React Native' LIMIT 1;
+    
+    IF course_id_1 IS NOT NULL THEN
+        -- Chapter 1
+        INSERT INTO chapters (course_id, title, order_index)
+        VALUES (course_id_1, 'Getting Started', 1)
+        RETURNING id INTO chapter_id_1;
+        
+        -- Lessons for Chapter 1
+        INSERT INTO lessons (course_id, chapter_id, title, duration_minutes, order_index, is_preview, resource_url, resource_type)
+        VALUES 
+            (course_id_1, chapter_id_1, 'Welcome to the Course', 5, 1, true, 'courses/' || course_id_1 || '/lessons/welcome.mp4', 'video'),
+            (course_id_1, chapter_id_1, 'Setting up your Environment', 15, 2, false, 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4', 'video');
+            
+        -- Chapter 2
+        INSERT INTO chapters (course_id, title, order_index)
+        VALUES (course_id_1, 'React Native Basics', 2)
+        RETURNING id INTO chapter_id_2;
+        
+        -- Lessons for Chapter 2
+        INSERT INTO lessons (course_id, chapter_id, title, duration_minutes, order_index, is_preview, video_url)
+        VALUES 
+            (course_id_1, chapter_id_2, 'Components and Props', 20, 1, false, 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4'),
+            (course_id_1, chapter_id_2, 'State and Hooks', 25, 2, false, 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4');
+    END IF;
+END $$;
