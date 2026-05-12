@@ -8,6 +8,7 @@ Complete guide for working with Supabase in this project.
 - [Configuration](#configuration)
 - [Clerk Integration](#clerk-integration)
 - [Database Schema](#database-schema)
+- [Storage](#storage)
 - [Row Level Security (RLS)](#row-level-security-rls)
 - [Viewing RLS Policies](#viewing-rls-policies)
 - [Migrations](#migrations)
@@ -138,6 +139,28 @@ CREATE TABLE courses (
 - `idx_courses_category` - Fast filtering by category
 
 ---
+
+## Storage
+
+### Buckets
+
+| Bucket Name | Access | Purpose |
+|-------------|--------|---------|
+| `lesson-resources` | Authenticated Only | Videos, PDFs, and other lesson materials |
+
+### Directory Structure
+
+Resources follow a strict path convention for RLS policy efficiency:
+`courses/{course_id}/lessons/{lesson_id}/{filename}`
+
+### Storage RLS Policies
+
+| Policy Name | Command | Who | Condition |
+|------------|---------|-----|-----------|
+| Authenticated users can view resources | SELECT | Authenticated | Course is published OR user is instructor |
+| Instructors can manage own resources | ALL | Authenticated | instructor_id matches `auth.jwt()->>'sub'` |
+
+**Note:** Public access is disabled for all storage buckets. Users must be logged in via Clerk to access any lesson materials.
 
 ## Row Level Security (RLS)
 
