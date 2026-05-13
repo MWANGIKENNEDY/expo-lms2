@@ -1,7 +1,8 @@
 import { useUser, useAuth, useClerk, useUserProfileModal } from '@clerk/expo'
+import { useRouter } from 'expo-router'
 import { BlurView } from 'expo-blur'
 import { LinearGradient } from 'expo-linear-gradient'
-import { User, LogOut, Heart, Award, ExternalLink } from 'lucide-react-native'
+import { User, LogOut, Heart, Award, ExternalLink, LayoutDashboard } from 'lucide-react-native'
 import React from 'react'
 import { Image, ScrollView, StyleSheet, Text, View, Dimensions } from 'react-native'
 import { ProfileStats } from '@/components/profile/ProfileStats'
@@ -17,6 +18,7 @@ export default function ProfilePage() {
   const { data: userProfile } = useProfile()
   const { presentUserProfile, isAvailable } = useUserProfileModal()
   const queryClient = useQueryClient()
+  const router = useRouter()
 
   const handleLogout = async () => {
     try {
@@ -94,6 +96,12 @@ export default function ProfilePage() {
             label="Manage Account" 
             onPress={handleManageAccount}
             value="Edit Profile"
+          />
+          <SettingsItem 
+            icon={LayoutDashboard} 
+            label="Switch to Tutor" 
+            onPress={() => router.push('/tutors')}
+            value="Manage Courses"
           />
           <SettingsItem 
             icon={Heart} 

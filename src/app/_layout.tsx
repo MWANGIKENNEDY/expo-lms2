@@ -109,6 +109,7 @@ function RootLayoutNav() {
           <Stack.Protected guard={!!profile}>
             <Stack.Screen name="index" />
             <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="tutors" options={{ headerShown: false }} />
             <Stack.Screen 
               name="course/[id]" 
               options={{ 
