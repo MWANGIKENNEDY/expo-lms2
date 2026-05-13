@@ -1,4 +1,4 @@
-import { ClerkProvider, useAuth } from '@clerk/expo';
+import { ClerkProvider, useAuth, useUser } from '@clerk/expo';
 import { tokenCache } from '@clerk/expo/token-cache';
 import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -34,7 +34,10 @@ if (!publishableKey) {
 
 function RootLayoutNav() {
   const { isSignedIn, isLoaded: isAuthLoaded } = useAuth();
+  const { user } = useUser();
   const colorScheme = useColorScheme();
+
+  const isTutor = user?.publicMetadata?.role === 'tutor';
 
   // Fetch profile globally so we can guard the onboarding/app routes
   const {
@@ -109,7 +112,12 @@ function RootLayoutNav() {
           <Stack.Protected guard={!!profile}>
             <Stack.Screen name="index" />
             <Stack.Screen name="(tabs)" />
-            <Stack.Screen name="tutors" options={{ headerShown: false }} />
+            
+            {/* Tutor Dashboard - Restricted to Tutors only */}
+            <Stack.Protected guard={isTutor}>
+              <Stack.Screen name="tutors" options={{ headerShown: false }} />
+            </Stack.Protected>
+
             <Stack.Screen 
               name="course/[id]" 
               options={{ 

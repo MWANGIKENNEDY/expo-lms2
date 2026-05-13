@@ -20,6 +20,8 @@ export default function ProfilePage() {
   const queryClient = useQueryClient()
   const router = useRouter()
 
+  const isTutor = user?.publicMetadata?.role === 'tutor'
+
   const handleLogout = async () => {
     try {
       await signOut()
@@ -97,12 +99,14 @@ export default function ProfilePage() {
             onPress={handleManageAccount}
             value="Edit Profile"
           />
-          <SettingsItem 
-            icon={LayoutDashboard} 
-            label="Switch to Tutor" 
-            onPress={() => router.push('/tutors')}
-            value="Manage Courses"
-          />
+          {isTutor && (
+            <SettingsItem 
+              icon={LayoutDashboard} 
+              label="Switch to Tutor" 
+              onPress={() => router.push('/tutors')}
+              value="Manage Courses"
+            />
+          )}
           <SettingsItem 
             icon={Heart} 
             label="My Interests" 
