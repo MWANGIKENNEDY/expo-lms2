@@ -35,6 +35,31 @@ export function useCourses() {
 }
 
 /**
+ * Fetch courses created by the current user
+ */
+export function useTutorCourses() {
+  const supabase = useSupabase();
+  const { userId } = useAuth();
+
+  return useQuery({
+    queryKey: [...courseKeys.lists(), 'tutor', userId],
+    queryFn: async () => {
+      if (!userId) return [] as Course[];
+
+      const { data, error } = await supabase
+        .from('courses')
+        .select('*')
+        .eq('instructor_id', userId)
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      return data as Course[];
+    },
+    enabled: !!userId,
+  });
+}
+
+/**
  * Fetch a single course by ID (including chapters and lessons)
  */
 export function useCourse(id: string) {
